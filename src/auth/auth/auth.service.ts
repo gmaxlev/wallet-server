@@ -26,7 +26,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signUp({ email, password }: SignUpDto) {
+  async signUp({ email, password, name }: SignUpDto) {
     const queryRunner = this.dataSource.createQueryRunner();
 
     await queryRunner.connect();
@@ -36,7 +36,7 @@ export class AuthService {
 
     try {
       result = await this.userService.create(
-        { email, password },
+        { email, password, name },
         queryRunner.manager,
       );
       await queryRunner.commitTransaction();

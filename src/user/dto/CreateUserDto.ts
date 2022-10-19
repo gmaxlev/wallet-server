@@ -8,4 +8,8 @@ export class CreateUserDto {
   @IsNotEmpty()
   @Trim()
   password: string;
+
+  @IsNotEmpty()
+  @Trim()
+  name: string;
 }

@@ -15,7 +15,7 @@ export class UserService {
   ) {}
 
   async create(
-    { email, password }: CreateUserDto,
+    { email, password, name }: CreateUserDto,
     entityManager = this.dataSource.manager,
   ) {
     const existed = await this.userRepository.findOneBy({ email });
@@ -29,6 +29,7 @@ export class UserService {
     const user = new User();
     user.email = email;
     user.password = await bcrypt.hash(password, await bcrypt.genSalt());
+    user.name = name;
 
     return entityManager.save(user);
   }

@@ -8,4 +8,7 @@ export class SignUpDto {
   @IsNotEmpty()
   @Trim()
   password: string;
+  @IsNotEmpty()
+  @Trim()
+  name: string;
 }
