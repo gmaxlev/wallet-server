@@ -4,9 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../database/entities/User';
 import { UserController } from './controllers/user/user.controller';
 import { AuthModule } from '../auth/auth.module';
+import { AccountModule } from '../account/account.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), forwardRef(() => AuthModule)],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    forwardRef(() => AuthModule),
+    AccountModule,
+  ],
   providers: [UserService],
   controllers: [UserController],
   exports: [UserService],

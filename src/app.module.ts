@@ -11,9 +11,10 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthMiddleware } from './auth/middlewares/auth.middleware';
+import { AccountModule } from './account/account.module';
 
 @Module({
-  imports: [DatabaseModule, AuthModule, UserModule, ConfigModule],
+  imports: [DatabaseModule, AuthModule, UserModule, ConfigModule, AccountModule],
   controllers: [AppController],
   providers: [AppService],
 })

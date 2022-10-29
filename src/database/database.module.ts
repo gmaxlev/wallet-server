@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RefreshToken } from './entities/RefreshToken';
 import { User } from './entities/User';
+import { Account } from './entities/Account';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { User } from './entities/User';
           username: config.getOrThrow('DB_USERNAME'),
           password: config.getOrThrow('DB_PASSWORD'),
           database: config.getOrThrow('DB_DATABASE'),
-          entities: [RefreshToken, User],
+          entities: [RefreshToken, User, Account],
         };
       },
     }),

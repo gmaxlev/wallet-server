@@ -6,12 +6,14 @@ import { User } from '../../database/entities/User';
 import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DuplicateEmail } from '../errors';
+import { AccountService } from '../../account/account/account.service';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private dataSource: DataSource,
+    private accountService: AccountService,
   ) {}
 
   async create(
@@ -30,6 +32,7 @@ export class UserService {
     user.email = email;
     user.password = await bcrypt.hash(password, await bcrypt.genSalt());
     user.name = name;
+    user.accounts = [this.accountService.createDefaultAccount()];
 
     return entityManager.save(user);
   }
@@ -58,6 +61,7 @@ export class UserService {
       where: {
         id,
       },
+      relations: ['accounts'],
     });
   }
 }
