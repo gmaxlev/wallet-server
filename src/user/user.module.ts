@@ -5,6 +5,7 @@ import { User } from '../database/entities/User';
 import { UserController } from './controllers/user/user.controller';
 import { AuthModule } from '../auth/auth.module';
 import { AccountModule } from '../account/account.module';
+import { I18nModule } from '../i18n/i18n.module';
 
 @Module({
   imports: [

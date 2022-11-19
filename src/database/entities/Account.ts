@@ -1,6 +1,14 @@
 import { BaseEntity } from '../BaseEntity';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import {
+  AfterLoad,
+  BeforeInsert,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { User } from './User';
+import { Currency } from './Currency';
 
 @Entity()
 export class Account extends BaseEntity {
@@ -9,15 +17,22 @@ export class Account extends BaseEntity {
   })
   user: User;
 
-  @Column({ type: 'numeric', precision: 2, default: 0 })
-  value: number;
+  @Column({ type: 'numeric', scale: 2, default: 0 })
+  balance: number;
 
   @Column()
   name: string;
 
-  @Column({ type: 'text' })
+  @Column()
   description: string;
 
-  @Column()
-  isMain: boolean;
+  @ManyToOne(() => Currency, (currency) => currency.accounts, {
+    nullable: false,
+  })
+  currency: Currency;
+
+  @AfterLoad()
+  private valueToNumber() {
+    this.balance = parseFloat(this.balance as any);
+  }
 }

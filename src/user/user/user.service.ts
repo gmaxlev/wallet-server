@@ -32,7 +32,7 @@ export class UserService {
     user.email = email;
     user.password = await bcrypt.hash(password, await bcrypt.genSalt());
     user.name = name;
-    user.accounts = [this.accountService.createDefaultAccount()];
+    user.accounts = [await this.accountService.createFirstAccount()];
 
     return entityManager.save(user);
   }
@@ -61,7 +61,6 @@ export class UserService {
       where: {
         id,
       },
-      relations: ['accounts'],
     });
   }
 }

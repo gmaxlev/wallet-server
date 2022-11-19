@@ -6,7 +6,13 @@ import * as cookieParser from 'cookie-parser';
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
   app.enableCors({
-    origin: ['http://localhost:3001', 'http://192.168.100.87:3001'],
+    origin: [
+      'http://localhost:3000',
+      'http://192.168.100.87:3001',
+      'http://192.168.149.59:3001',
+      'http://192.168.239.59:3001',
+      'http://192.168.100.87:62349',
+    ],
     credentials: true,
   });
   await app.listen(3000);

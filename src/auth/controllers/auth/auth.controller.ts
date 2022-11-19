@@ -19,6 +19,8 @@ import { OnlyUnauthorized, SetRoles, UserRole } from '../../../user/roles';
 import { JwtRefreshPayload, JwtTokenPayload } from '../../types';
 import { UnauthorizedError } from '../../errors';
 import { UserAgent } from '../../../common/decorators';
+import { UserFriendlyException } from '../../../common/exceptions/UserFriendlyException';
+import { LocalizeException } from '../../../i18n/expeptions/LocalizeException';
 
 @Controller('auth')
 @UsePipes(new ValidationPipe({ transform: true }))
@@ -79,7 +81,7 @@ export class AuthController {
       );
     } catch (e: unknown) {
       if (e instanceof UnauthorizedError) {
-        throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+        throw new LocalizeException('auth:sign-in-error', 401);
       }
       throw e;
     }
