@@ -10,21 +10,23 @@ import { AccountModule } from './account/account.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { I18nModule } from './i18n/i18n.module';
 import { CurrencyModule } from './currency/currency.module';
+import { CategoryModule } from './category/category.module';
 import * as path from 'path';
 
 @Module({
   imports: [
+    I18nModule.forRoot({
+      fallbackLng: 'en',
+      resourcesPath: path.join(process.cwd(), '/src/locales'),
+    }),
     DatabaseModule,
     AuthModule,
     UserModule,
     ConfigModule,
     AccountModule,
     PaginationModule,
-    I18nModule.forRoot({
-      fallbackLng: 'en',
-      resourcesPath: path.join(process.cwd(), '/src/locales'),
-    }),
     CurrencyModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

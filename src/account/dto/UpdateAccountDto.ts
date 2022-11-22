@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, Min } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 import { Trim } from '../../common/transforms';
 
 export class UpdateAccountDto {
@@ -6,6 +6,7 @@ export class UpdateAccountDto {
   @Trim()
   name: string;
 
+  @IsString()
   @Trim()
   description: string;
 

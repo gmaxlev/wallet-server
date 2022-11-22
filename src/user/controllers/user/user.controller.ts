@@ -11,6 +11,6 @@ export class UserController {
 
   @Get()
   get(@InjectUser() user: UserRequest) {
-    return this.userService.getUser(user.id);
+    return this.userService.get(user.id);
   }
 }

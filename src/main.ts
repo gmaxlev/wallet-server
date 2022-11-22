@@ -11,7 +11,7 @@ import * as cookieParser from 'cookie-parser';
       'http://192.168.100.87:3001',
       'http://192.168.149.59:3001',
       'http://192.168.239.59:3001',
-      'http://192.168.100.87:62349',
+      'http://192.168.100.87:63348',
     ],
     credentials: true,
   });

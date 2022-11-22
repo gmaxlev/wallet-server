@@ -56,7 +56,7 @@ export class UserService {
     return null;
   }
 
-  getUser(id: number, entityManager = this.dataSource.manager) {
+  get(id: number, entityManager = this.dataSource.manager) {
     return entityManager.findOne(User, {
       where: {
         id,

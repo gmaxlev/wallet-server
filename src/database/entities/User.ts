@@ -3,6 +3,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { RefreshToken } from './RefreshToken';
 import { UserRole } from '../../user/roles';
 import { Account } from './Account';
+import { Category } from './Category';
 
 @Entity()
 export class User extends BaseEntity {
@@ -31,6 +32,11 @@ export class User extends BaseEntity {
     cascade: true,
   })
   accounts: Account[];
+
+  @OneToMany(() => Account, (account) => account.user, {
+    cascade: true,
+  })
+  categories: Category[];
 
   @Column({
     type: 'simple-json',
